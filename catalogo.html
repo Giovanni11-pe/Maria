@@ -3,14 +3,85 @@
 <head>
   <meta charset="UTF-8">
   <title>Maria - Catálogo</title>
-  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      margin: 0;
+      display: flex;
+      font-family: Arial, sans-serif;
+    }
 
+    .barra-lateral {
+      width: 200px;
+      background-color: #e6e0d0;
+      padding: 20px;
+      height: 100vh;
+      overflow: auto;
+      border-right: 1px solid #c5c1b3;
+    }
+
+    .barra-lateral ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .barra-lateral li {
+      margin-bottom: 10px;
+    }
+
+    .barra-lateral a {
+      text-decoration: none;
+      color: #6a6d57;
+      font-style: italic;
+    }
+
+    .contenido {
+      flex-grow: 1;
+      padding: 30px;
+      background-color: #fdfdf6;
+      height: 100vh;
+      overflow-y: auto;
+    }
+
+    h1, h2 {
+      color: #6a6d57;
+    }
+
+    .frase-maria {
+      color: #848C67;
+      font-style: italic;
+      margin-bottom: 10px;
+    }
+
+    .logo-icono {
+      text-align: center;
+      margin-bottom: 100px;
+      padding-top: 20px;
+    }
+
+    .logo-icono img {
+      max-width: 80px;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .logo-maria {
+      text-align: center;
+      margin-bottom: 20px;
+      padding-top: 0;
+    }
+
+    .logo-maria img {
+      max-width: 220px;
+      height: auto;
+    }
+  </style>
 </head>
 <body>
 
 <div class="barra-lateral">
   <div class="logo-icono">
-    <img src="img/Icono.png" alt="Icono Maria" class="icono-img">
+    <img src="img/icon.png" alt="Icono Maria">
   </div>
   <h2>Menú</h2>
   <ul>
@@ -21,12 +92,14 @@
   </ul>
 </div>
 
-  <div class="contenido">
-        <div class="logo-maria">
-      <img src="img/Logo.png" alt="Logo Maria" class="logo-img" />
-    <p>"Maria nace del deseo de realzar la belleza única que hay en cada persona, a través de accesorios hechos con pasión, detalle y estilo."</p>
+<div class="contenido">
+  <div class="logo-maria">
+    <img src="img/maria.png" alt="Logo Maria">
 
-    <!-- Repetición del párrafo para simular scroll -->
+    <p class="frase-maria">"Maria nace del deseo de realzar la belleza única que hay en cada persona, a través de accesorios hechos con pasión, detalle y estilo."</p>
+    <p class="frase-maria">"Cada pieza de Maria está hecha con el corazón, pensada para acompañarte en tu día a día y resaltar tu esencia con un toque especial."</p>
+
+    <!-- Párrafos de prueba para scroll -->
     <p>Este es el párrafo número 1 del contenido de prueba para probar el scroll.</p>
     <p>Este es el párrafo número 2 del contenido de prueba para probar el scroll.</p>
     <p>Este es el párrafo número 3 del contenido de prueba para probar el scroll.</p>
@@ -48,6 +121,7 @@
     <p>Este es el párrafo número 19 del contenido de prueba para probar el scroll.</p>
     <p>Este es el párrafo número 20 del contenido de prueba para probar el scroll.</p>
   </div>
+</div>
 
 </body>
 </html>
