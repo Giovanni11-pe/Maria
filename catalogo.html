@@ -2,170 +2,956 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Maria - Catálogo</title>
-  <link rel="icon" href="img/maria.png" type="image/png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maria — Accesorios</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
   <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --ink: #1a1a18;
+      --clay: #8B7355;
+      --linen: #F7F4EE;
+      --warm: #EDE8DC;
+      --accent: #C4956A;
+      --muted: #9E9180;
+      --line: rgba(196, 149, 106, 0.2);
+    }
+    html, body { height: 100%; }
     body {
-      margin: 0;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      color: var(--ink);
+      background: var(--linen);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav.m-nav {
       display: flex;
-      font-family: Arial, sans-serif;
+      align-items: center;
+      justify-content: space-between;
+      padding: 22px 40px;
+      border-bottom: 0.5px solid var(--line);
+      position: sticky;
+      top: 0;
+      background: rgba(247, 244, 238, 0.92);
+      backdrop-filter: blur(12px);
+      z-index: 100;
     }
-
-    .barra-lateral {
-      width: 160px;
-      background-color: #E1DBCA;
-      padding: 20px;
-      height: 100vh;
-      overflow: auto;
-      border-right: 1px solid #E1DBCA;
+    .m-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 300;
+      letter-spacing: 0.15em;
+      color: var(--ink);
+      font-style: italic;
     }
-
-    .menu {
-      list-style: none;
-      padding: 0;
-      margin-top: -20px;
-    }
-
-    .menu li {
-      margin-bottom: 10.5px;
-    }
-
-    .menu li a {
+    .m-logo span { color: var(--accent); }
+    .m-nav-links { display: flex; gap: 28px; list-style: none; }
+    .m-nav-links a {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
       text-decoration: none;
-      color: #9BA186;
+      cursor: pointer;
+      transition: color .2s;
+    }
+    .m-nav-links a:hover { color: var(--accent); }
+    .m-nav-cta {
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 10px 20px;
+      border: 0.5px solid var(--accent);
+      color: var(--accent);
+      cursor: pointer;
+      background: none;
+      transition: all .25s;
+    }
+    .m-nav-cta:hover { background: var(--accent); color: white; }
+
+    /* ── HERO ── */
+    .m-hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 92vh;
+      overflow: hidden;
+    }
+    .m-hero-left {
+      padding: 80px 56px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .m-hero-tag {
+      font-size: 10px;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .m-hero-tag::before {
+      content: '';
+      width: 32px;
+      height: 0.5px;
+      background: var(--accent);
+    }
+    .m-hero-h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(52px, 6vw, 80px);
+      font-weight: 300;
+      line-height: 1;
+      color: var(--ink);
+      margin-bottom: 28px;
+    }
+    .m-hero-h1 em {
       font-style: italic;
-      padding-left: 2px;
-      display: inline-block;
-      font-size: 12.5px;
-    }
-
-    .pagos {
-      list-style: none;
-      padding: 0;
-      margin-top: 10px;
-    }
-
-    .pagos li {
-      margin-bottom: 12px;
-    }
-
-    .pagos li a {
-      text-decoration: none;
-      color: #9BA186;
-      font-style: italic;
-      padding-left: 2px;
-      display: inline-block;
-      font-size: 12.5px;
-    }
-
-    .redes {
-      list-style: none;
-      padding: 0;
-      margin-top: 10px;
-    }
-
-    .redes li {
-      margin-bottom: 12px;
-    }
-
-    .redes li a {
-      text-decoration: none;
-      color: #9BA186;
-      font-style: italic;
-      padding-left: 2px;
-      display: inline-block;
-      font-size: 12.5px;
-    }
-
-    .contenido {
-      flex-grow: 1;
-      padding: 30px;
-      background-color: #fdfdf6;
-      height: 100vh;
-      overflow-y: auto;
-    }
-
-    h1 , h2{
-      color: #6a6d57;
-    }
-
-    h2 {
-      font-size: 12.5px;
-      margin-top: 30px;
-    }
-
-    .frase-maria {
-      color: #848C67;
-      font-style: italic;
-      margin-bottom: 6px;
-      font-size: 12px; 
-    }
-
-    .logo-icono {
-      text-align: center;
-      margin-bottom: 60px;
-      padding-top: 0px;
-    }
-
-    .logo-icono img {
-      max-width: 115px;
-      height: auto;
+      color: var(--accent);
       display: block;
+    }
+    .m-hero-desc {
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--muted);
+      max-width: 340px;
+      margin-bottom: 40px;
+    }
+    .m-hero-actions { display: flex; gap: 16px; align-items: center; }
+    .btn-primary {
+      padding: 14px 32px;
+      background: var(--ink);
+      color: var(--linen);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border: none;
+      font-family: 'DM Sans', sans-serif;
+      transition: all .25s;
+    }
+    .btn-primary:hover { background: var(--accent); }
+    .btn-ghost {
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: none;
+      border: none;
+      font-family: 'DM Sans', sans-serif;
+      transition: color .2s;
+    }
+    .btn-ghost:hover { color: var(--ink); }
+    .btn-ghost svg { transition: transform .2s; }
+    .btn-ghost:hover svg { transform: translateX(4px); }
+    .m-hero-right {
+      background: var(--warm);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: stretch;
+    }
+    .m-hero-right-inner {
+      width: 100%;
+      height: 100%;
+      min-height: 500px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #E8E0D0;
+      overflow: hidden;
+    }
+    /* Replace this div with an <img> tag pointing to your hero image */
+    .m-hero-placeholder {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 140px;
+      color: var(--clay);
+      opacity: .2;
+      font-style: italic;
+      user-select: none;
+    }
+    .m-hero-right:hover .m-hero-right-inner img {
+      transform: scale(1.04);
+    }
+    .m-hero-badge {
+      position: absolute;
+      top: 32px;
+      right: 32px;
+      background: rgba(247, 244, 238, 0.9);
+      padding: 14px 18px;
+      font-size: 9px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--clay);
+    }
+    .m-hero-stats {
+      display: flex;
+      gap: 32px;
+      margin-top: 48px;
+      padding-top: 32px;
+      border-top: 0.5px solid var(--line);
+    }
+    .stat-val {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px;
+      font-weight: 300;
+      color: var(--ink);
+    }
+    .stat-lbl {
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    /* ── MARQUEE ── */
+    .m-marquee { background: var(--ink); padding: 14px 0; overflow: hidden; }
+    .m-marquee-inner {
+      display: flex;
+      animation: marquee 22s linear infinite;
+    }
+    .m-marquee-item {
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(247, 244, 238, 0.55);
+      white-space: nowrap;
+      padding: 0 40px;
+    }
+    .m-marquee-item span { color: var(--accent); margin: 0 12px; }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ── CATEGORIES ── */
+    .m-cats { padding: 80px 40px; }
+    .m-section-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 40px;
+    }
+    .m-section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 36px;
+      font-weight: 300;
+      color: var(--ink);
+    }
+    .m-section-sub {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .m-see-all {
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      cursor: pointer;
+      background: none;
+      border: none;
+      font-family: 'DM Sans', sans-serif;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: gap .2s;
+    }
+    .m-see-all:hover { gap: 10px; }
+    .m-cat-row {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 3px;
+    }
+    .m-cat-card {
+      background: var(--warm);
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .m-cat-card.big { min-height: 480px; }
+    .m-cat-card.sm  { min-height: 235px; }
+    .m-cat-sm-col { display: flex; flex-direction: column; gap: 3px; }
+    .m-cat-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(26,26,24,.65) 0%, transparent 55%);
+      opacity: 0;
+      transition: opacity .4s;
+    }
+    .m-cat-card:hover .m-cat-overlay { opacity: 1; }
+    .m-cat-placeholder {
+      width: 100%;
+      height: 100%;
+      min-height: inherit;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    /* Replace placeholder divs with <img> tags for category images */
+    .m-cat-placeholder img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .6s ease;
+    }
+    .m-cat-card:hover .m-cat-placeholder img { transform: scale(1.05); }
+    .m-cat-icon {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 12px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--clay);
+      opacity: .6;
+    }
+    .m-cat-info {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 24px;
+      z-index: 2;
+      transform: translateY(8px);
+      transition: transform .35s;
+    }
+    .m-cat-card:hover .m-cat-info { transform: translateY(0); }
+    .m-cat-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-style: italic;
+      color: white;
+      display: block;
+    }
+    .m-cat-count {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.65);
+      display: block;
+      margin-top: 4px;
+    }
+
+    /* ── PRODUCTS ── */
+    .m-products { padding: 0 40px 80px; }
+    .m-prod-tabs {
+      display: flex;
+      gap: 24px;
+      margin-bottom: 36px;
+      border-bottom: 0.5px solid var(--line);
+      padding-bottom: 16px;
+    }
+    .m-tab {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      cursor: pointer;
+      background: none;
+      border: none;
+      font-family: 'DM Sans', sans-serif;
+      padding-bottom: 4px;
+      position: relative;
+      transition: color .2s;
+    }
+    .m-tab.active { color: var(--ink); }
+    .m-tab.active::after {
+      content: '';
+      position: absolute;
+      bottom: -16px;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: var(--ink);
+    }
+    .m-tab:hover { color: var(--ink); }
+    .m-prod-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+    .m-prod-card { cursor: pointer; }
+    .m-prod-img {
+      background: var(--warm);
+      aspect-ratio: 3/4;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 14px;
+    }
+    .m-prod-img-inner {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform .6s ease;
+    }
+    /* Replace .m-prod-img-inner with <img> for product photos */
+    .m-prod-img-inner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .6s ease;
+    }
+    .m-prod-card:hover .m-prod-img-inner { transform: scale(1.06); }
+    .m-prod-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: var(--ink);
+      color: var(--linen);
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 5px 10px;
+    }
+    .m-prod-fav {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 32px;
+      height: 32px;
+      background: white;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      opacity: 0;
+      transition: opacity .25s;
+    }
+    .m-prod-card:hover .m-prod-fav { opacity: 1; }
+    .m-prod-tag {
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 5px;
+    }
+    .m-prod-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 17px;
+      font-style: italic;
+      color: var(--ink);
+      display: block;
+      margin-bottom: 6px;
+    }
+    .m-prod-price { font-size: 13px; color: var(--ink); letter-spacing: 0.04em; }
+    .m-prod-price-old {
+      font-size: 12px;
+      color: var(--muted);
+      text-decoration: line-through;
+      margin-left: 8px;
+    }
+    .m-prod-img-icon {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 11px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--clay);
+      opacity: .5;
+    }
+
+    /* ── ABOUT BAND ── */
+    .m-about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background: var(--ink);
+      overflow: hidden;
+    }
+    .m-about-left {
+      padding: 80px 64px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .m-about-eyebrow {
+      font-size: 9px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 24px;
+    }
+    .m-about-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(24px, 2.5vw, 34px);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--linen);
+      line-height: 1.5;
+      margin-bottom: 32px;
+    }
+    .m-about-sig {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .m-about-right {
+      background: var(--clay);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 72px 56px;
+    }
+    .m-about-ornament {
+      position: absolute;
+      bottom: -20px;
+      right: 24px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 160px;
+      color: rgba(247, 244, 238, 0.07);
+      font-style: italic;
+      user-select: none;
+      line-height: 1;
+    }
+    .m-about-right-inner {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      width: 100%;
+    }
+    .m-info-pill {
+      background: rgba(247, 244, 238, 0.1);
+      border: 0.5px solid rgba(247, 244, 238, 0.18);
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .m-info-pill-icon { font-size: 18px; }
+    .m-info-pill-text {
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(247, 244, 238, 0.72);
+    }
+
+    /* ── NEWSLETTER ── */
+    .m-newsletter {
+      padding: 80px 40px;
+      text-align: center;
+      border-top: 0.5px solid var(--line);
+    }
+    .m-nl-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 40px;
+      font-weight: 300;
+      color: var(--ink);
+      margin-bottom: 12px;
+    }
+    .m-nl-sub {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 32px;
+      line-height: 1.7;
+    }
+    .m-nl-form {
+      display: flex;
+      max-width: 420px;
       margin: 0 auto;
     }
-
-    .logo-maria {
-      text-align: center;
-      margin-bottom: 0px;
-      padding-top: 0;
+    .m-nl-input {
+      flex: 1;
+      padding: 14px 20px;
+      border: 0.5px solid var(--line);
+      background: white;
+      font-size: 13px;
+      font-family: 'DM Sans', sans-serif;
+      color: var(--ink);
+      outline: none;
     }
+    .m-nl-input:focus { border-color: var(--accent); }
+    .m-nl-btn {
+      padding: 14px 24px;
+      background: var(--accent);
+      color: white;
+      border: none;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-family: 'DM Sans', sans-serif;
+      cursor: pointer;
+      transition: background .2s;
+      white-space: nowrap;
+    }
+    .m-nl-btn:hover { background: var(--ink); }
 
-    .logo-maria img {
-      max-width: 220px;
-      height: auto;
+    /* ── FOOTER ── */
+    footer.m-footer {
+      background: var(--warm);
+      padding: 36px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 0.5px solid var(--line);
+    }
+    .m-footer-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 16px;
+      font-style: italic;
+      color: var(--ink);
+    }
+    .m-footer-links { display: flex; gap: 24px; }
+    .m-footer-links a {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color .2s;
+    }
+    .m-footer-links a:hover { color: var(--accent); }
+    .m-footer-copy { font-size: 10px; color: var(--muted); letter-spacing: 0.05em; }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .anim-1 { animation: fadeUp .7s .05s both; }
+    .anim-2 { animation: fadeUp .7s .15s both; }
+    .anim-3 { animation: fadeUp .7s .25s both; }
+    .anim-4 { animation: fadeUp .7s .35s both; }
+    .anim-5 { animation: fadeUp .7s .45s both; }
+
+    /* ── RESPONSIVE (básico) ── */
+    @media (max-width: 900px) {
+      .m-hero { grid-template-columns: 1fr; }
+      .m-hero-right { min-height: 360px; }
+      .m-cat-row { grid-template-columns: 1fr 1fr; }
+      .m-prod-grid { grid-template-columns: repeat(2, 1fr); }
+      .m-about { grid-template-columns: 1fr; }
+      .m-nav-links { display: none; }
+    }
+    @media (max-width: 600px) {
+      nav.m-nav { padding: 18px 20px; }
+      .m-hero-left { padding: 48px 24px; }
+      .m-cats, .m-products, .m-newsletter { padding-left: 20px; padding-right: 20px; }
+      .m-cat-row { grid-template-columns: 1fr; }
+      .m-prod-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+      footer.m-footer { flex-direction: column; gap: 16px; text-align: center; }
     }
   </style>
 </head>
 <body>
 
-<div class="barra-lateral">
-  <div class="logo-icono">
-    <img src="img/icon.png" alt="Icono Maria">
+  <!-- ── NAV ── -->
+  <nav class="m-nav">
+    <div class="m-logo">Maria <span>·</span> Accesorios</div>
+    <ul class="m-nav-links">
+      <li><a href="#">Colección</a></li>
+      <li><a href="#">Artesanal</a></li>
+      <li><a href="#">Personalizado</a></li>
+      <li><a href="#">Nosotros</a></li>
+    </ul>
+    <button class="m-nav-cta">Contactar</button>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section class="m-hero">
+    <div class="m-hero-left">
+      <div class="m-hero-tag anim-1">Colección 2025 · Lima, Perú</div>
+      <h1 class="m-hero-h1 anim-2">
+        Piezas que
+        <em>te eligen.</em>
+      </h1>
+      <p class="m-hero-desc anim-3">
+        Accesorios hechos a mano con materiales naturales y el deseo de realzar la belleza única que hay en cada persona.
+      </p>
+      <div class="m-hero-actions anim-4">
+        <button class="btn-primary">Ver colección</button>
+        <button class="btn-ghost">
+          Personalizar pieza
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+      <div class="m-hero-stats anim-5">
+        <div>
+          <div class="stat-val">+200</div>
+          <div class="stat-lbl">Piezas únicas</div>
+        </div>
+        <div>
+          <div class="stat-val">100%</div>
+          <div class="stat-lbl">Artesanal</div>
+        </div>
+        <div>
+          <div class="stat-val">5★</div>
+          <div class="stat-lbl">Calidad</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="m-hero-right">
+      <div class="m-hero-badge">Piezas únicas · Lima, Perú</div>
+      <div class="m-hero-right-inner">
+        <!-- REEMPLAZA ESTO CON TU IMAGEN:
+             <img src="img/hero.jpg" alt="Maria Accesorios" style="width:100%;height:100%;object-fit:cover;transition:transform .6s ease">
+        -->
+        <span class="m-hero-placeholder">M</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── MARQUEE ── -->
+  <div class="m-marquee">
+    <div class="m-marquee-inner">
+      <span class="m-marquee-item">Anillos artesanales <span>✦</span></span>
+      <span class="m-marquee-item">Collares únicos <span>✦</span></span>
+      <span class="m-marquee-item">Pulseras tejidas <span>✦</span></span>
+      <span class="m-marquee-item">Aretes exclusivos <span>✦</span></span>
+      <span class="m-marquee-item">Hecho con amor en Lima <span>✦</span></span>
+      <span class="m-marquee-item">Personalización disponible <span>✦</span></span>
+      <span class="m-marquee-item">Yape · Plin · Transferencia <span>✦</span></span>
+      <!-- Duplicado para el loop continuo -->
+      <span class="m-marquee-item">Anillos artesanales <span>✦</span></span>
+      <span class="m-marquee-item">Collares únicos <span>✦</span></span>
+      <span class="m-marquee-item">Pulseras tejidas <span>✦</span></span>
+      <span class="m-marquee-item">Aretes exclusivos <span>✦</span></span>
+      <span class="m-marquee-item">Hecho con amor en Lima <span>✦</span></span>
+      <span class="m-marquee-item">Personalización disponible <span>✦</span></span>
+      <span class="m-marquee-item">Yape · Plin · Transferencia <span>✦</span></span>
+    </div>
   </div>
-  <ul class="menu">
-    <li><a href="#">Disponible</a></li>
-    <li><a href="#">Artesanal</a></li>
-    <li><a href="#">Personalizado</a></li>
-    <li><a href="#">Exclusivas</a></li>
-    <li><a href="#">Ofertas</a></li>
-  </ul>
 
-  <h2>Metodos de pago</h2>
-  <ul class="pagos">
-    <li><a href="#">(+51) 991 110 622 </a></li>
-    <li><a href="#">(+51) 991 110 622 </a></li>
-  </ul>
+  <!-- ── CATEGORIES ── -->
+  <section class="m-cats">
+    <div class="m-section-head">
+      <div>
+        <p class="m-section-sub">Navegar por</p>
+        <h2 class="m-section-title">Categorías</h2>
+      </div>
+      <button class="m-see-all">Ver todo →</button>
+    </div>
 
-  <h2>Redes sociales</h2>
-  <ul class="redes">
-    <li><a href="#">accessorios_06 </a></li>
-    <li><a href="#">tik tok </a></li>
-  </ul>
+    <div class="m-cat-row">
+      <!-- Grande -->
+      <div class="m-cat-card big" style="background:#DDD8CA">
+        <div class="m-cat-placeholder">
+          <!-- <img src="img/anillos.jpg" alt="Anillos"> -->
+          <span class="m-cat-icon">Anillos</span>
+        </div>
+        <div class="m-cat-overlay"></div>
+        <div class="m-cat-info">
+          <span class="m-cat-name">Anillos</span>
+          <span class="m-cat-count">18 piezas disponibles</span>
+        </div>
+      </div>
 
-</div>
-  
+      <!-- Columna media -->
+      <div class="m-cat-sm-col">
+        <div class="m-cat-card sm" style="background:#D5CFC0">
+          <div class="m-cat-placeholder">
+            <!-- <img src="img/collares.jpg" alt="Collares"> -->
+            <span class="m-cat-icon">Collares</span>
+          </div>
+          <div class="m-cat-overlay"></div>
+          <div class="m-cat-info">
+            <span class="m-cat-name">Collares</span>
+            <span class="m-cat-count">24 piezas</span>
+          </div>
+        </div>
+        <div class="m-cat-card sm" style="background:#CCC7B5">
+          <div class="m-cat-placeholder">
+            <!-- <img src="img/pulseras.jpg" alt="Pulseras"> -->
+            <span class="m-cat-icon">Pulseras</span>
+          </div>
+          <div class="m-cat-overlay"></div>
+          <div class="m-cat-info">
+            <span class="m-cat-name">Pulseras</span>
+            <span class="m-cat-count">31 piezas</span>
+          </div>
+        </div>
+      </div>
 
-<div class="contenido">
-  <div class="logo-maria">
-    <img src="img/maria.png" alt="Logo Maria">
+      <!-- Columna derecha -->
+      <div class="m-cat-sm-col">
+        <div class="m-cat-card sm" style="background:#E2DDD1">
+          <div class="m-cat-placeholder">
+            <!-- <img src="img/aretes.jpg" alt="Aretes"> -->
+            <span class="m-cat-icon">Aretes</span>
+          </div>
+          <div class="m-cat-overlay"></div>
+          <div class="m-cat-info">
+            <span class="m-cat-name">Aretes</span>
+            <span class="m-cat-count">15 piezas</span>
+          </div>
+        </div>
+        <div class="m-cat-card sm" style="background:#C8C3B0">
+          <div class="m-cat-placeholder">
+            <!-- <img src="img/exclusivas.jpg" alt="Exclusivas"> -->
+            <span class="m-cat-icon">Exclusivas</span>
+          </div>
+          <div class="m-cat-overlay"></div>
+          <div class="m-cat-info">
+            <span class="m-cat-name">Exclusivas</span>
+            <span class="m-cat-count">8 piezas</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <p class="frase-maria">"Maria nace del deseo de realzar la belleza única que hay en cada persona, a través de accesorios hechos con pasión, detalle y estilo."</p>
-    <p class="frase-maria">"Cada pieza de Maria está hecha con el corazón, pensada para acompañarte en tu día a día y resaltar tu esencia con un toque especial."</p>
+  <!-- ── PRODUCTOS DESTACADOS ── -->
+  <section class="m-products">
+    <div class="m-section-head">
+      <div>
+        <p class="m-section-sub">Más vendidos</p>
+        <h2 class="m-section-title">Destacados</h2>
+      </div>
+    </div>
 
-    <!-- Párrafos de prueba para scroll -->
-    <!-- ... los párrafos del 1 al 20 ... -->
-  </div>
-</div>
+    <div class="m-prod-tabs">
+      <button class="m-tab active" onclick="setTab(this)">Todos</button>
+      <button class="m-tab" onclick="setTab(this)">Artesanal</button>
+      <button class="m-tab" onclick="setTab(this)">Exclusiva</button>
+      <button class="m-tab" onclick="setTab(this)">Oferta</button>
+    </div>
+
+    <div class="m-prod-grid">
+
+      <div class="m-prod-card">
+        <div class="m-prod-img" style="background:#DDD8CA">
+          <div class="m-prod-img-inner">
+            <!-- <img src="img/prod-anillo-tierra.jpg" alt="Anillo Tierra"> -->
+            <span class="m-prod-img-icon">Imagen</span>
+          </div>
+          <div class="m-prod-badge">Artesanal</div>
+          <button class="m-prod-fav" onclick="toggleFav(this)">♡</button>
+        </div>
+        <span class="m-prod-tag">Anillos</span>
+        <span class="m-prod-name">Anillo Tierra</span>
+        <span class="m-prod-price">S/ 45.00</span>
+      </div>
+
+      <div class="m-prod-card">
+        <div class="m-prod-img" style="background:#D0CABC">
+          <div class="m-prod-img-inner">
+            <!-- <img src="img/prod-collar-luna.jpg" alt="Collar Luna"> -->
+            <span class="m-prod-img-icon">Imagen</span>
+          </div>
+          <div class="m-prod-badge">Exclusiva</div>
+          <button class="m-prod-fav" onclick="toggleFav(this)">♡</button>
+        </div>
+        <span class="m-prod-tag">Collares</span>
+        <span class="m-prod-name">Collar Luna</span>
+        <span class="m-prod-price">S/ 68.00</span>
+      </div>
+
+      <div class="m-prod-card">
+        <div class="m-prod-img" style="background:#CAC6B5">
+          <div class="m-prod-img-inner">
+            <!-- <img src="img/prod-pulsera-verde.jpg" alt="Pulsera Verde"> -->
+            <span class="m-prod-img-icon">Imagen</span>
+          </div>
+          <button class="m-prod-fav" onclick="toggleFav(this)">♡</button>
+        </div>
+        <span class="m-prod-tag">Pulseras</span>
+        <span class="m-prod-name">Pulsera Verde</span>
+        <span class="m-prod-price">S/ 35.00 <span class="m-prod-price-old">S/ 50.00</span></span>
+      </div>
+
+      <div class="m-prod-card">
+        <div class="m-prod-img" style="background:#E0DBD0">
+          <div class="m-prod-img-inner">
+            <!-- <img src="img/prod-arete-sahara.jpg" alt="Arete Sahara"> -->
+            <span class="m-prod-img-icon">Imagen</span>
+          </div>
+          <div class="m-prod-badge" style="background:var(--accent)">Nuevo</div>
+          <button class="m-prod-fav" onclick="toggleFav(this)">♡</button>
+        </div>
+        <span class="m-prod-tag">Aretes</span>
+        <span class="m-prod-name">Arete Sahara</span>
+        <span class="m-prod-price">S/ 52.00</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── ABOUT BAND ── -->
+  <section class="m-about">
+    <div class="m-about-left">
+      <p class="m-about-eyebrow">Sobre Maria</p>
+      <blockquote class="m-about-quote">
+        "Cada pieza está hecha con el corazón, pensada para acompañarte y resaltar tu esencia."
+      </blockquote>
+      <span class="m-about-sig">— Mariangela, fundadora · Lima, Perú</span>
+    </div>
+    <div class="m-about-right">
+      <div class="m-about-ornament">M</div>
+      <div class="m-about-right-inner">
+        <div class="m-info-pill">
+          <span class="m-info-pill-icon">📍</span>
+          <span class="m-info-pill-text">Lima, Perú · Envíos nacionales</span>
+        </div>
+        <div class="m-info-pill">
+          <span class="m-info-pill-icon">📱</span>
+          <span class="m-info-pill-text">(+51) 991 110 622</span>
+        </div>
+        <div class="m-info-pill">
+          <span class="m-info-pill-icon">💳</span>
+          <span class="m-info-pill-text">Yape · Plin · Transferencia</span>
+        </div>
+        <div class="m-info-pill">
+          <span class="m-info-pill-icon">✦</span>
+          <span class="m-info-pill-text">@by_maria_accesorios</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── NEWSLETTER ── -->
+  <section class="m-newsletter">
+    <h2 class="m-nl-title">Sé la primera en saberlo</h2>
+    <p class="m-nl-sub">
+      Entérate de nuevas piezas, ofertas y colecciones exclusivas antes que nadie.<br>
+      Sin spam, solo belleza.
+    </p>
+    <div class="m-nl-form">
+      <input class="m-nl-input" type="email" placeholder="tu@correo.com">
+      <button class="m-nl-btn">Suscribir</button>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer class="m-footer">
+    <div class="m-footer-brand">Maria — Accesorios</div>
+    <div class="m-footer-links">
+      <a href="https://instagram.com/by_maria_accesorios" target="_blank">Instagram</a>
+      <a href="https://wa.me/51991110622" target="_blank">WhatsApp</a>
+      <a href="#">Contacto</a>
+      <a href="#">Políticas</a>
+    </div>
+    <span class="m-footer-copy">© 2025 Maria Accesorios</span>
+  </footer>
+
+  <script>
+    function setTab(el) {
+      document.querySelectorAll('.m-tab').forEach(t => t.classList.remove('active'));
+      el.classList.add('active');
+    }
+
+    function toggleFav(btn) {
+      btn.textContent = btn.textContent === '♡' ? '♥' : '♡';
+      btn.style.color = btn.textContent === '♥' ? 'var(--accent)' : '';
+    }
+  </script>
 
 </body>
 </html>
